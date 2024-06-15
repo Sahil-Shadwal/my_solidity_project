@@ -1,34 +1,38 @@
-// SPDX-License-Identifier: MIT
-
+// SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-contract Counter{
-    string public name = "My Name";
-    uint public count = 1; //state variable // statically types language 
+import "hardhat/console.sol";
 
-    constructor(string memory _name, uint _initialCount) { //it only runs once
+contract Counter {
+    string public name;
+    uint256 public count;
+
+    constructor(string memory _name, uint256 _initialCount) {
         name = _name;
         count = _initialCount;
     }
 
-    function increment() public {
-        count++;
-    }
-
-    function decrement() public {
-        count-- ;
-    }
-
-    function gerCount() public view returns(uint) {
+    function increment() public returns (uint256 newCount) {
+        count ++;
         return count;
     }
 
-    function getName() public view returns(string memory) {
+    function decrement() public returns (uint256 newCount) {
+        count --;
+        return count;
+    }
+
+    function getCount() public view returns (uint256) {
+        return count;
+    }
+
+    function setName(string memory _newName) public returns (string memory newName) {
+        name = _newName;
         return name;
     }
 
-    function setName(string memory _newName) public returns(string memory newName) {
-        name = _newName;
+    function getName() public view returns (string memory currentName) {
         return name;
-    } 
+    }
+
 }
